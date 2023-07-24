@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-vue
+  namespace: springboot-vue-demo
+spec:
+  containers:
+    - name: demo-vue
+      image: venture007-docker.pkg.coding.net/cka/cka-docker/demo-vue:v1.0.0
+      ports:
+        - containerPort: 8080
+      imagePullPolicy: Always

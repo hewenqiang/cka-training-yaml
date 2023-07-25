@@ -25,16 +25,16 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx-pv-pvc
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-pv-pvc
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-pv-pvc
     spec:
       containers:
       - name: nginx

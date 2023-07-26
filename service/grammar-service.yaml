@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grammar-service
+spec:
+  selector:
+    app: nginx
+    env: dev
+    tier: frontend
+    track: stable
+    version: "1.14.2"
+    release: "1.0"
+    owner: k8s
+    team: devops
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

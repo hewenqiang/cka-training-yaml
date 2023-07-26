@@ -5,6 +5,8 @@ metadata:
   labels:
     app: nginx
 spec:
+  revisionHistoryLimit: 8
+  # 默认是10，保留8个历史版本
   replicas: 3
   selector:
     matchLabels:

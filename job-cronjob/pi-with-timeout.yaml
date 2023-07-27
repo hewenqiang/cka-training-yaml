@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-with-timeout
+spec:
+  completions: 50            # 运行的次数，即Job结束需要成功运行的Pod个数
+  parallelism: 5             # 并行运行Pod的数量，默认为1
+  backoffLimit: 5            # 表示失败Pod的重试最大次数，超过这个次数不会继续重试。
+  activeDeadlineSeconds: 10  # 表示Pod超期时间，一旦达到这个时间，Job及其所有的Pod都会停止。
+  template:                  # Pod定义
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command:
+            - perl
+            - "-Mbignum=bpi"
+            - "-wle"
+            - print bpi(2000)
+      restartPolicy: Never

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+    events {
+    }
+    http {
+      server {
+        listen 80;
+        server_name localhost;
+        location / {
+          return 200 "Hello from Kubernetes ConfigMap!";
+        }
+      }
+    }

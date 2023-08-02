@@ -12,6 +12,7 @@ spec:
       labels:
         app: nginx
     spec:
+      nodeName: k8s-node01
       containers:
       - name: nginx
         image: nginx

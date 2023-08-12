@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Node
+metadata:
+  labels:
+    beta.kubernetes.io/arch: amd64
+    beta.kubernetes.io/os: linux
+    kubernetes.io/hostname: node-n1
+  name: node-n1
+spec:
+  taints:
+    - effect: NoSchedule
+      key: accelerator
+      value: gpu

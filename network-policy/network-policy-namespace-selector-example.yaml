@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+spec:
+  podSelector:                  # 规则对具有role=db标签的Pod生效
+    matchLabels:
+      role: db
+  ingress:                      # 表示入规则
+    - from:
+        - namespaceSelector:        # 只允许具有project=myproject标签的命名空间中的Pod访问
+            matchLabels:
+              project: myproject
+      ports:                      # 只能使用TCP协议访问6379端口
+        - protocol: TCP
+          port: 6379

@@ -1,0 +1,9 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: default  # 命名空间
+  name: role-example
+rules:
+  - apiGroups: [""]
+    resources: ["pods"] # 可以操作的资源
+    verbs: ["get", "list"] # 对可操作资源可执行的动作

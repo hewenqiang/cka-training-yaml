@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-network-policy-2
+  namespace: cka-training    #被访问者的命名空间
+spec:
+  podSelector:
+    matchLabels:
+      env: test
+  policyTypes:
+    - Ingress      #策略影响入栈流量
+  ingress:
+    - from:      #允许流量的来源
+        - podSelector:
+            matchLabels:
+              env: dev
+      ports:
+        - protocol: TCP
+          port: 5432    #被访问者公开的端口

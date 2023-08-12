@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-network-policy
+  namespace: cka-training    #被访问者的命名空间
+spec:
+  podSelector: #这两行必须要写，或者也可以写成一行为podSelector: {}
+    matchLabels: {} # 注意matchLabels:与{}之间有一个空格
+  policyTypes:
+    - Ingress      #策略影响入栈流量
+  ingress:
+    - from:      #允许流量的来源
+        - namespaceSelector:
+            matchLabels:
+              project: echo  #访问者的命名空间的标签label
+      #- podSelector: {}   #注意，这个不写。
+      ports:
+        - protocol: TCP
+          port: 8000    #被访问者公开的端口
